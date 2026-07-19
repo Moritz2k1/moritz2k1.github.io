@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Moritz Gutschi — Software Engineer</title>
+        <meta
+            name="description"
+            content="Portfolio of Moritz Gutschi, a software engineer specialising in Java, TypeScript, Angular, Spring Boot, .NET, PostgreSQL and Docker."
+        />
+
+        <link rel="canonical" href="https://moritz2k1.github.io/" />
+
+        <meta property="og:type" content="profile" />
+        <meta
+            property="og:title"
+            content="Moritz Gutschi — Software Engineer"
+        />
+        <meta
+            property="og:description"
+            content="Software engineer specialising in Java, TypeScript, Angular, Spring Boot, .NET, PostgreSQL and Docker."
+        />
+        <meta property="og:url" content="https://moritz2k1.github.io/" />
+        <meta
+            property="og:image"
+            content="https://moritz2k1.github.io/public/profile.png"
+        />
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "@id": "https://moritz2k1.github.io/#person",
+                "name": "Moritz Gutschi",
+                "jobTitle": "Software Engineer",
+                "url": "https://moritz2k1.github.io/",
+                "image": "https://moritz2k1.github.io/public/profile.png",
+                "description": "Software engineer specialising in Java, TypeScript, Angular, Spring Boot, .NET, PostgreSQL and Docker.",
+                "knowsAbout": [
+                    "Java",
+                    "TypeScript",
+                    "JavaScript",
+                    "C#",
+                    ".NET",
+                    "Angular",
+                    "Spring Boot",
+                    "Node.js",
+                    "PostgreSQL",
+                    "Docker",
+                    "Maven",
+                    "Gradle"
+                ],
+                "sameAs": [
+                    "https://github.com/Moritz2k1",
+                    "https://www.linkedin.com/in/moritz-gutschi/"
+                ]
+            }
+        </script>
+
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='15' fill='white' stroke='black' stroke-width='2'/><path d='M1 16a15 15 0 0 1 30 0Z' fill='crimson'/><rect x='1' y='15' width='30' height='2' fill='black'/><circle cx='16' cy='16' r='4' fill='white' stroke='black' stroke-width='2'/></svg>"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-identity">
+                <img
+                    src="public/profile.png"
+                    alt="Moritz Profile Picture"
+                    class="profile-pic"
+                />
+                <div class="name-block">
+                    <h1 class="name">Moritz Gutschi</h1>
+                    <p class="tagline">Software Engineer</p>
+                </div>
+            </div>
+
+            <div class="skills">
+                <h2 class="skills-heading">Skills</h2>
+                <div class="skill-categories">
+                    <div class="skill-category">
+                        <span class="skill-cat-label">Languages</span>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">C# .NET</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <span class="skill-cat-label">Frontend</span>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">Figma</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <span class="skill-cat-label">Backend</span>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">.NET Core</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <span class="skill-cat-label">Database</span>
+                        <div class="skill-tags">
+                            <span class="skill-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <span class="skill-cat-label">DevOps</span>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Maven</span>
+                            <span class="skill-tag">Gradle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Battle -->
+        <section class="battle-section">
+            <div class="battle-arena">
+                <canvas id="battle-transition"></canvas>
+
+                <!-- Pre-battle teaser -->
+                <div id="battle-intro">
+                    <p class="battle-teaser">Think you can beat me?</p>
+                    <button id="challenge-btn">Challenge me</button>
+                </div>
+
+                <!-- Team selection -->
+                <div id="team-select">
+                    <div class="team-select-header">
+                        <h2 class="team-select-title">Choose Your Team</h2>
+                        <span id="team-counter" class="team-counter"
+                            >0 / 6</span
+                        >
+                    </div>
+                    <div id="pokemon-pool" class="pokemon-pool"></div>
+                    <button id="battle-btn" class="battle-start-btn" disabled>
+                        Battle!
+                    </button>
+                </div>
+
+                <!-- Battle window -->
+                <div id="battle-window">
+                    <div class="battle-field">
+                        <div class="battle-row enemy-row">
+                            <div class="pokemon-panel enemy-panel">
+                                <div class="pokemon-info">
+                                    <span class="pokemon-name" id="enemy-name"
+                                        >???</span
+                                    >
+                                    <div
+                                        class="pokemon-types"
+                                        id="enemy-types"
+                                    ></div>
+                                </div>
+                                <div class="hp-bar-track">
+                                    <div class="hp-bar" id="enemy-hp-bar"></div>
+                                </div>
+                                <span class="pokemon-hp-text" id="enemy-hp-text"
+                                    >— / —</span
+                                >
+                            </div>
+                            <div class="sprite-zone">
+                                <img
+                                    id="enemy-sprite"
+                                    class="pokemon-sprite"
+                                    alt=""
+                                    src=""
+                                />
+                            </div>
+                        </div>
+
+                        <div class="battle-row player-row">
+                            <div class="sprite-zone">
+                                <img
+                                    id="player-sprite"
+                                    class="pokemon-sprite"
+                                    alt=""
+                                    src=""
+                                />
+                            </div>
+                            <div class="pokemon-panel player-panel">
+                                <div class="pokemon-info">
+                                    <span class="pokemon-name" id="player-name"
+                                        >???</span
+                                    >
+                                    <div
+                                        class="pokemon-types"
+                                        id="player-types"
+                                    ></div>
+                                </div>
+                                <div class="hp-bar-track">
+                                    <div
+                                        class="hp-bar"
+                                        id="player-hp-bar"
+                                    ></div>
+                                </div>
+                                <span
+                                    class="pokemon-hp-text"
+                                    id="player-hp-text"
+                                    >— / —</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="battle-ui">
+                        <div class="battle-log" id="battle-log"></div>
+                        <div class="battle-actions" id="battle-actions"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script type="module" src="src/main.js"></script>
+    </body>
+</html>
