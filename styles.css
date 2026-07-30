@@ -1,885 +1,966 @@
 :root {
-    --bg:           #0a0c13;
-    --surface-1:    #10131c;
-    --surface-2:    #171b28;
-    --surface-3:    #1e2335;
-    --border:       #252d44;
-    --border-hi:    #3a4d72;
-    --blue:         #4f8ef7;
-    --blue-hi:      #7aadff;
-    --blue-dim:     #2c5cb5;
-    --blue-glow:    rgba(79, 142, 247, 0.18);
-    --blue-glow-hi: rgba(79, 142, 247, 0.38);
-    --text:         #d6e0f0;
-    --text-dim:     #9aaac8;
-    --text-muted:   #62709a;
-    --hp-green:     #2ecc71;
-    --hp-yellow:    #f1c40f;
-    --hp-red:       #e74c3c;
-    --radius:       8px;
-    --radius-lg:    16px;
+  --bg: #0a0c13;
+  --surface-1: #10131c;
+  --surface-2: #171b28;
+  --surface-3: #1e2335;
+  --border: #252d44;
+  --border-hi: #3a4d72;
+  --blue: #4f8ef7;
+  --blue-hi: #7aadff;
+  --blue-dim: #2c5cb5;
+  --blue-glow: rgba(79, 142, 247, 0.18);
+  --blue-glow-hi: rgba(79, 142, 247, 0.38);
+  --text: #d6e0f0;
+  --text-dim: #9aaac8;
+  --text-muted: #62709a;
+  --hp-green: #2ecc71;
+  --hp-yellow: #f1c40f;
+  --hp-red: #e74c3c;
+  --radius: 8px;
+  --radius-lg: 16px;
 }
 
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 [hidden] {
-    display: none !important;
+  display: none !important;
 }
 
 html {
-    font-size: 16px;
-    scroll-behavior: smooth;
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Inter', system-ui, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    background-image: radial-gradient(
-        ellipse 80% 45% at 50% -5%,
-        rgba(79, 142, 247, 0.07) 0%,
-        transparent 70%
-    );
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  background-image: radial-gradient(
+    ellipse 80% 45% at 50% -5%,
+    rgba(79, 142, 247, 0.07) 0%,
+    transparent 70%
+  );
 }
 
 #battle-transition {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    display: none;
-    opacity: 1;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 
 #battle-transition.active {
-    display: block;
-    pointer-events: all;
+  display: block;
+  pointer-events: all;
 }
 
 #battle-transition.fade-out {
-    opacity: 0;
+  opacity: 0;
 }
 
 .hero {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-    max-width: 1060px;
-    margin: 0 auto;
-    padding: 5rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
 }
 
 .hero-identity {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .profile-pic {
-    width: 175px;
-    height: 175px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--blue);
-    box-shadow:
-        0 0 0 6px rgba(79, 142, 247, 0.1),
-        0 0 32px rgba(79, 142, 247, 0.22),
-        0 10px 40px rgba(0, 0, 0, 0.6);
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--blue);
+  box-shadow:
+    0 0 0 6px rgba(79, 142, 247, 0.1),
+    0 0 32px rgba(79, 142, 247, 0.22),
+    0 10px 40px rgba(0, 0, 0, 0.6);
 }
 
 .name-block {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .name {
-    font-size: 2.75rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    background: linear-gradient(135deg, #e4eeff 0%, #a8c0ee 45%, #7a9de0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #e4eeff 0%, #a8c0ee 45%, #7a9de0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .tagline {
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .skills {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .skills-heading {
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
 .skill-categories {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0.85rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.85rem;
 }
 
 .skill-category:nth-child(1),
-.skill-category:nth-child(2) { grid-column: span 3; }
+.skill-category:nth-child(2) {
+  grid-column: span 3;
+}
 
 .skill-category:nth-child(3),
 .skill-category:nth-child(4),
-.skill-category:nth-child(5) { grid-column: span 2; }
+.skill-category:nth-child(5) {
+  grid-column: span 2;
+}
 
 .skill-category {
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    padding: 1rem 1.1rem;
-    background: linear-gradient(160deg, var(--surface-2) 0%, var(--surface-1) 100%);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--cat-color, var(--blue));
-    border-radius: var(--radius);
-    transition: box-shadow 0.18s, transform 0.18s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1rem 1.1rem;
+  background: linear-gradient(
+    160deg,
+    var(--surface-2) 0%,
+    var(--surface-1) 100%
+  );
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cat-color, var(--blue));
+  border-radius: var(--radius);
+  transition:
+    box-shadow 0.18s,
+    transform 0.18s;
 }
 
 .skill-category:hover {
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--cat-color);
-    transform: translateY(-2px);
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.35),
+    0 0 0 1px var(--cat-color);
+  transform: translateY(-2px);
 }
 
-.skill-category:nth-child(1) { --cat-color: #7aadff; }
-.skill-category:nth-child(2) { --cat-color: #ff8fab; }
-.skill-category:nth-child(3) { --cat-color: #4ecdc4; }
-.skill-category:nth-child(4) { --cat-color: #f9c74f; }
-.skill-category:nth-child(5) { --cat-color: #b07aff; }
+.skill-category:nth-child(1) {
+  --cat-color: #7aadff;
+}
+.skill-category:nth-child(2) {
+  --cat-color: #ff8fab;
+}
+.skill-category:nth-child(3) {
+  --cat-color: #4ecdc4;
+}
+.skill-category:nth-child(4) {
+  --cat-color: #f9c74f;
+}
+.skill-category:nth-child(5) {
+  --cat-color: #b07aff;
+}
 
 .skill-cat-label {
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--cat-color, var(--blue));
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cat-color, var(--blue));
 }
 
 .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
 }
 
 .skill-tag {
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    background: var(--surface-3);
-    border: 1px solid var(--border-hi);
-    color: var(--text);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-    transition: border-color 0.15s, color 0.15s;
-    cursor: default;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: var(--surface-3);
+  border: 1px solid var(--border-hi);
+  color: var(--text);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+  cursor: default;
 }
 
 .skill-tag:hover {
-    border-color: var(--cat-color, var(--blue));
-    color: var(--cat-color, var(--blue-hi));
+  border-color: var(--cat-color, var(--blue));
+  color: var(--cat-color, var(--blue-hi));
 }
 
 .battle-section {
-    max-width: 1060px;
-    margin: 0 auto;
-    padding: 0 2rem 7rem;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 2rem 7rem;
 }
 
 .battle-arena {
-    display: grid;
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
+  display: grid;
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 #battle-intro,
 #team-select,
 #battle-window {
-    grid-row: 1;
-    grid-column: 1;
+  grid-row: 1;
+  grid-column: 1;
 }
 
 #battle-intro {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    padding: 5rem 2rem;
-    background: linear-gradient(160deg, var(--surface-2) 0%, var(--surface-1) 100%);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    box-shadow:
-        0 4px 28px rgba(0, 0, 0, 0.55),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 5rem 2rem;
+  background: linear-gradient(
+    160deg,
+    var(--surface-2) 0%,
+    var(--surface-1) 100%
+  );
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .battle-teaser {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1rem;
-    color: var(--text-dim);
-    text-align: center;
-    line-height: 2;
+  font-family: "Press Start 2P", monospace;
+  font-size: 1rem;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 2;
 }
 
 #challenge-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.7rem;
-    padding: 1.1rem 2.5rem;
-    background: linear-gradient(135deg, var(--blue-dim) 0%, var(--blue) 100%);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    letter-spacing: 0.06em;
-    box-shadow:
-        0 4px 22px rgba(79, 142, 247, 0.42),
-        0 2px 8px rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.18);
-    transition: transform 0.14s, box-shadow 0.14s;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.7rem;
+  padding: 1.1rem 2.5rem;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, var(--blue) 100%);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  box-shadow:
+    0 4px 22px rgba(79, 142, 247, 0.42),
+    0 2px 8px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition:
+    transform 0.14s,
+    box-shadow 0.14s;
 }
 
 #challenge-btn:hover {
-    transform: translateY(-2px);
-    box-shadow:
-        0 8px 34px rgba(79, 142, 247, 0.62),
-        0 3px 14px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 34px rgba(79, 142, 247, 0.62),
+    0 3px 14px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 #challenge-btn:active {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 #battle-window {
-    display: flex;
-    flex-direction: column;
-    visibility: hidden;
-    pointer-events: none;
-    background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface-1) 100%);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow:
-        0 16px 64px rgba(0, 0, 0, 0.8),
-        0 4px 16px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    var(--surface-2) 0%,
+    var(--surface-1) 100%
+  );
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow:
+    0 16px 64px rgba(0, 0, 0, 0.8),
+    0 4px 16px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 #battle-window.is-visible {
-    visibility: visible;
-    pointer-events: auto;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 #battle-intro.is-hidden {
-    display: none;
+  display: none;
 }
 
 #team-select {
-    display: none;
-    flex-direction: column;
-    background: linear-gradient(180deg, var(--surface-2) 0%, var(--surface-1) 100%);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow:
-        0 16px 64px rgba(0, 0, 0, 0.8),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  display: none;
+  flex-direction: column;
+  background: linear-gradient(
+    180deg,
+    var(--surface-2) 0%,
+    var(--surface-1) 100%
+  );
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow:
+    0 16px 64px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 #team-select.is-visible {
-    display: flex;
+  display: flex;
 }
 
 .team-select-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
 }
 
 .team-select-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.65rem;
-    color: var(--blue-hi);
-    margin: 0;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.65rem;
+  color: var(--blue-hi);
+  margin: 0;
 }
 
 .team-counter {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.55rem;
-    color: var(--text-dim);
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.55rem;
+  color: var(--text-dim);
 }
 
 .pokemon-pool {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.65rem;
-    padding: 1rem 1.2rem;
-    padding-top: 1.4rem;
-    overflow-y: auto;
-    overflow-x: visible;
-    flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  padding: 1rem 1.2rem;
+  padding-top: 1.4rem;
+  overflow-y: auto;
+  overflow-x: visible;
+  flex: 1;
 }
 
 .poke-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-    padding: 0.75rem 0.85rem;
-    background: var(--surface-3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    cursor: pointer;
-    position: relative;
-    transition: border-color 0.14s, box-shadow 0.14s, opacity 0.14s;
-    user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.75rem 0.85rem;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  position: relative;
+  transition:
+    border-color 0.14s,
+    box-shadow 0.14s,
+    opacity 0.14s;
+  user-select: none;
 }
 
 .poke-card-order {
-    position: absolute;
-    top: -9px;
-    left: -9px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--blue-dim) 0%, var(--blue-hi) 100%);
-    border: 2px solid var(--surface-1);
-    color: #fff;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.38rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transform: scale(0.6);
-    transition: opacity 0.15s, transform 0.15s;
-    box-shadow: 0 0 10px rgba(79, 142, 247, 0.7), 0 2px 5px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-    pointer-events: none;
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, var(--blue-hi) 100%);
+  border: 2px solid var(--surface-1);
+  color: #fff;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.38rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 0.15s,
+    transform 0.15s;
+  box-shadow:
+    0 0 10px rgba(79, 142, 247, 0.7),
+    0 2px 5px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .poke-card-order.lead {
-    background: linear-gradient(135deg, #a07000 0%, #f0c040 100%);
-    box-shadow: 0 0 10px rgba(240, 192, 64, 0.7), 0 2px 5px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #a07000 0%, #f0c040 100%);
+  box-shadow:
+    0 0 10px rgba(240, 192, 64, 0.7),
+    0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .poke-card-order.visible {
-    opacity: 1;
-    transform: scale(1);
+  opacity: 1;
+  transform: scale(1);
 }
 
 .poke-card:hover:not(.disabled) {
-    border-color: var(--border-hi);
+  border-color: var(--border-hi);
 }
 
 .poke-card.selected {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 1px var(--blue), inset 0 0 16px var(--blue-glow);
+  border-color: var(--blue);
+  box-shadow:
+    0 0 0 1px var(--blue),
+    inset 0 0 16px var(--blue-glow);
 }
 
 .poke-card.disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 .poke-card-header {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .poke-card-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    flex: 1;
-    min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 0;
 }
 
 .poke-card-sprite {
-    width: 52px;
-    height: 52px;
-    object-fit: contain;
-    image-rendering: pixelated;
-    flex-shrink: 0;
-    align-self: flex-start;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .poke-card-name {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1rem;
-    color: var(--text);
-    line-height: 1.6;
+  font-family: "Press Start 2P", monospace;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.6;
 }
 
 .poke-card-types {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .poke-card-moves {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    border-top: 1px solid var(--border);
-    padding-top: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.5rem;
 }
 
 .poke-card-moves li {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.5;
 }
 
 .type-badge--sm {
-    font-size: 0.42rem;
-    padding: 0.15rem 0.35rem;
-    border-radius: 2px;
-    flex-shrink: 0;
+  font-size: 0.42rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 2px;
+  flex-shrink: 0;
 }
 
 .battle-start-btn {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.6rem;
-    padding: 1rem 2rem;
-    margin: 0.85rem 1.2rem;
-    background: linear-gradient(135deg, var(--blue-dim) 0%, var(--blue) 100%);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    cursor: pointer;
-    flex-shrink: 0;
-    box-shadow:
-        0 4px 22px rgba(79, 142, 247, 0.42),
-        inset 0 1px 0 rgba(255, 255, 255, 0.18);
-    transition: transform 0.14s, box-shadow 0.14s, opacity 0.14s;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.6rem;
+  padding: 1rem 2rem;
+  margin: 0.85rem 1.2rem;
+  background: linear-gradient(135deg, var(--blue-dim) 0%, var(--blue) 100%);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow:
+    0 4px 22px rgba(79, 142, 247, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition:
+    transform 0.14s,
+    box-shadow 0.14s,
+    opacity 0.14s;
 }
 
 .battle-start-btn:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 
 .battle-start-btn:not(:disabled):hover {
-    transform: translateY(-2px);
-    box-shadow:
-        0 8px 34px rgba(79, 142, 247, 0.62),
-        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 34px rgba(79, 142, 247, 0.62),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 .battle-start-btn:not(:disabled):active {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .battle-field {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    min-height: 460px;
-    border-bottom: 1px solid var(--border);
-    background:
-        radial-gradient(ellipse 60% 40% at 75% 30%, rgba(79, 142, 247, 0.05) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 35% at 25% 70%, rgba(79, 100, 220, 0.04) 0%, transparent 55%),
-        linear-gradient(180deg, #060914 0%, #080c1a 45%, #060810 100%);
-    position: relative;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  min-height: 460px;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(
+      ellipse 60% 40% at 75% 30%,
+      rgba(79, 142, 247, 0.05) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 50% 35% at 25% 70%,
+      rgba(79, 100, 220, 0.04) 0%,
+      transparent 55%
+    ),
+    linear-gradient(180deg, #060914 0%, #080c1a 45%, #060810 100%);
+  position: relative;
 }
 
 .battle-field::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(79, 142, 247, 0.15) 20%,
-        rgba(79, 142, 247, 0.25) 50%,
-        rgba(79, 142, 247, 0.15) 80%,
-        transparent 100%
-    );
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(79, 142, 247, 0.15) 20%,
+    rgba(79, 142, 247, 0.25) 50%,
+    rgba(79, 142, 247, 0.15) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .battle-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
 }
 
 .enemy-row {
-    align-items: flex-start;
-    padding-bottom: 0.5rem;
+  align-items: flex-start;
+  padding-bottom: 0.5rem;
 }
 
 .player-row {
-    align-items: flex-end;
-    padding-top: 0.5rem;
+  align-items: flex-end;
+  padding-top: 0.5rem;
 }
 
 .pokemon-panel {
-    flex: 0 0 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    padding: 1.1rem 1.3rem;
-    border-radius: var(--radius);
-    background: linear-gradient(135deg,
-        rgba(30, 35, 53, 0.92) 0%,
-        rgba(23, 27, 40, 0.92) 100%
-    );
-    border: 1px solid var(--border);
-    backdrop-filter: blur(4px);
-    box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.1rem 1.3rem;
+  border-radius: var(--radius);
+  background: linear-gradient(
+    135deg,
+    rgba(30, 35, 53, 0.92) 0%,
+    rgba(23, 27, 40, 0.92) 100%
+  );
+  border: 1px solid var(--border);
+  backdrop-filter: blur(4px);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .pokemon-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .pokemon-name {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.62rem;
-    color: var(--text);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.62rem;
+  color: var(--text);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .pokemon-types {
-    display: flex;
-    gap: 0.3rem;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
 }
 
 .type-badge {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.33rem;
-    padding: 0.2rem 0.45rem;
-    border-radius: 3px;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.33rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .pokemon-hp-text {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.48rem;
-    color: var(--text-muted);
-    letter-spacing: 0.02em;
-    text-align: right;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.48rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  text-align: right;
 }
 
 .hp-bar-track {
-    height: 10px;
-    background: rgba(0, 0, 0, 0.65);
-    border-radius: 5px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+  height: 10px;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .hp-bar {
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
-    background: linear-gradient(90deg, #1ea857, var(--hp-green));
-    /* Width is animated by JS — no CSS transition needed here */
-    transition: background 0.3s;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #1ea857, var(--hp-green));
+  /* Width is animated by JS — no CSS transition needed here */
+  transition: background 0.3s;
 }
 
 .hp-bar.hp-yellow {
-    background: linear-gradient(90deg, #c49000, var(--hp-yellow));
+  background: linear-gradient(90deg, #c49000, var(--hp-yellow));
 }
 
 .hp-bar.hp-red {
-    background: linear-gradient(90deg, #b81a1a, var(--hp-red));
+  background: linear-gradient(90deg, #b81a1a, var(--hp-red));
 }
 
 .sprite-zone {
-    flex: 1;
-    display: flex;
-    align-items: center;
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 .enemy-row .sprite-zone {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .player-row .sprite-zone {
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .pokemon-sprite {
-    width: 240px;
-    height: 240px;
-    object-fit: contain;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.7));
-    transition: filter 0.55s ease, transform 0.55s ease, opacity 0.55s ease;
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.7));
+  transition:
+    filter 0.55s ease,
+    transform 0.55s ease,
+    opacity 0.55s ease;
 }
 
 .player-row .pokemon-sprite {
-    transform: scale(1.1);
-    transform-origin: bottom left;
+  transform: scale(1.1);
+  transform-origin: bottom left;
 }
 
 .pokemon-sprite.fainted {
-    filter: grayscale(1) brightness(0.3) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
-    transform: translateY(28px);
-    opacity: 0.5;
+  filter: grayscale(1) brightness(0.3)
+    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+  transform: translateY(28px);
+  opacity: 0.5;
 }
 
 .battle-log {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.62rem;
-    line-height: 2.4;
-    color: var(--text);
-    padding: 1.5rem 2rem;
-    min-height: 110px;
-    border-bottom: 1px solid var(--border);
-    background: rgba(0, 0, 0, 0.3);
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.62rem;
+  line-height: 2.4;
+  color: var(--text);
+  padding: 1.5rem 2rem;
+  min-height: 110px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .battle-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.65rem;
-    padding: 1.25rem 1.75rem;
-    background: var(--surface-1);
-    /* fixed height: fits 3 button rows (pick-move: 4 moves + back) */
-    min-height: 240px;
-    align-content: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  padding: 1.25rem 1.75rem;
+  background: var(--surface-1);
+  /* fixed height: fits 3 button rows (pick-move: 4 moves + back) */
+  min-height: 240px;
+  align-content: start;
 }
 
 .battle-actions button {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.5rem;
-    line-height: 1.9;
-    padding: 0.9rem 1.2rem;
-    text-align: left;
-    background: linear-gradient(135deg, var(--surface-3) 0%, var(--surface-2) 100%);
-    color: var(--text);
-    border: 1px solid var(--border-hi);
-    border-radius: var(--radius);
-    cursor: pointer;
-    box-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    transition: background 0.14s, border-color 0.14s, box-shadow 0.14s, color 0.14s;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.5rem;
+  line-height: 1.9;
+  padding: 0.9rem 1.2rem;
+  text-align: left;
+  background: linear-gradient(
+    135deg,
+    var(--surface-3) 0%,
+    var(--surface-2) 100%
+  );
+  color: var(--text);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius);
+  cursor: pointer;
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition:
+    background 0.14s,
+    border-color 0.14s,
+    box-shadow 0.14s,
+    color 0.14s;
 }
 
 .battle-actions button:hover {
-    background: linear-gradient(135deg, #252e46 0%, #1d2538 100%);
-    border-color: var(--blue);
-    color: var(--blue-hi);
-    box-shadow:
-        0 2px 16px var(--blue-glow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  background: linear-gradient(135deg, #252e46 0%, #1d2538 100%);
+  border-color: var(--blue);
+  color: var(--blue-hi);
+  box-shadow:
+    0 2px 16px var(--blue-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 .battle-actions button:active {
-    transform: scale(0.97);
+  transform: scale(0.97);
 }
 
 .battle-actions .move-btn {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    white-space: normal;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  white-space: normal;
 }
 
 .move-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    flex: 1;
-    min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex: 1;
+  min-width: 0;
 }
 
 .move-name {
-    font-size: 0.5rem;
-    line-height: 1.4;
+  font-size: 0.5rem;
+  line-height: 1.4;
 }
 
 .move-stats {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.35rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .move-stat {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    gap: 0.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.2rem;
 }
 
 .stat-label {
-    font-size: 0.3rem;
-    font-family: 'Press Start 2P', monospace;
-    color: #556688;
-    letter-spacing: 0.04em;
+  font-size: 0.3rem;
+  font-family: "Press Start 2P", monospace;
+  color: #556688;
+  letter-spacing: 0.04em;
 }
 
 .stat-val {
-    font-size: 0.38rem;
-    font-family: 'Press Start 2P', monospace;
-    color: #99aabb;
+  font-size: 0.38rem;
+  font-family: "Press Start 2P", monospace;
+  color: #99aabb;
 }
 
-.stat-val--pwr { color: #e8c060; }
-.stat-val--acc { color: #70beff; }
+.stat-val--pwr {
+  color: #e8c060;
+}
+.stat-val--acc {
+  color: #70beff;
+}
 
 .stat-sep {
-    font-size: 0.3rem;
-    color: #334455;
-    font-family: 'Press Start 2P', monospace;
-    line-height: 1;
+  font-size: 0.3rem;
+  color: #334455;
+  font-family: "Press Start 2P", monospace;
+  line-height: 1;
 }
 
 .move-type-badge {
-    font-size: 0.5rem;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    font-family: 'Press Start 2P', monospace;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-    flex-shrink: 0;
+  font-size: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-family: "Press Start 2P", monospace;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 @media (max-width: 800px) {
-    .hero {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 3rem 1.5rem 2.5rem;
-        gap: 2rem;
-    }
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1.5rem 2.5rem;
+    gap: 2rem;
+  }
 
-    .hero {
-        padding: 3rem 1.5rem 2.5rem;
-        gap: 2rem;
-    }
+  .hero {
+    padding: 3rem 1.5rem 2.5rem;
+    gap: 2rem;
+  }
 
-    .hero-identity {
-        flex-direction: column;
-        text-align: center;
-    }
+  .hero-identity {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .skill-categories {
-        grid-template-columns: 1fr;
-    }
+  .skill-categories {
+    grid-template-columns: 1fr;
+  }
 
-    .skill-category:nth-child(n) { grid-column: span 1; }
+  .skill-category:nth-child(n) {
+    grid-column: span 1;
+  }
 
-    .skill-tags {
-        justify-content: center;
-    }
+  .skill-tags {
+    justify-content: center;
+  }
 
-    .name {
-        font-size: 2rem;
-    }
+  .name {
+    font-size: 2rem;
+  }
 
-    .battle-section {
-        padding: 0 1rem 4rem;
-    }
+  .battle-section {
+    padding: 0 1rem 4rem;
+  }
 
-    .battle-field {
-        min-height: 340px;
-    }
+  .battle-field {
+    min-height: 340px;
+  }
 
-    .battle-row {
-        padding: 1rem 1.25rem;
-    }
+  .battle-row {
+    padding: 1rem 1.25rem;
+  }
 
-    .pokemon-sprite {
-        width: 160px;
-        height: 160px;
-    }
+  .pokemon-sprite {
+    width: 160px;
+    height: 160px;
+  }
 
-    .pokemon-panel {
-        flex: 0 0 220px;
-    }
+  .pokemon-panel {
+    flex: 0 0 220px;
+  }
 
-    .battle-log {
-        padding: 1.1rem 1.25rem;
-        font-size: 0.52rem;
-    }
+  .battle-log {
+    padding: 1.1rem 1.25rem;
+    font-size: 0.52rem;
+  }
 
-    .battle-actions {
-        padding: 0.9rem 1rem;
-    }
+  .battle-actions {
+    padding: 0.9rem 1rem;
+  }
 
-    .pokemon-pool {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .pokemon-pool {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 560px) {
-    .battle-field {
-        min-height: 280px;
-    }
+  .battle-field {
+    min-height: 280px;
+  }
 
-    .pokemon-sprite {
-        width: 110px;
-        height: 110px;
-    }
+  .pokemon-sprite {
+    width: 110px;
+    height: 110px;
+  }
 
-    .pokemon-panel {
-        flex: 0 0 175px;
-    }
+  .pokemon-panel {
+    flex: 0 0 175px;
+  }
 
-    .battle-actions {
-        grid-template-columns: 1fr;
-    }
+  .battle-actions {
+    grid-template-columns: 1fr;
+  }
 
-    .pokemon-pool {
-        grid-template-columns: 1fr;
-    }
+  .pokemon-pool {
+    grid-template-columns: 1fr;
+  }
 }

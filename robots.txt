@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://moritz2k1.github.io/sitemap.xml
